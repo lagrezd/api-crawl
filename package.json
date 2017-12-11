@@ -1,0 +1,22 @@
+{
+  "name": "api-crawl",
+  "version": "1.0.0",
+  "description": "API for crawl site",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "author": "Damien Lagreze",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "crawl": "^0.3.1",
+    "express": "^4.16.2",
+    "mongoose": "^4.13.6",
+    "morgan": "^1.9.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.5"
+  }
+}
