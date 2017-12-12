@@ -1,10 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const crawl = require('crawl');
+
 
 Url = require('../models/url');
 
 router.get('/', (req, res, next) => {
+    var val = req.query.search;
+    var url = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20craigslist.search" +
+        "%20where%20location%3D%22sfbay%22%20and%20type%3D%22jjj%22%20and%20query%3D%22" + val + "%22&format=" +
+        "json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
+    console.log(url);
     Url.getUrls(function (err, urls) {
         if (err) {
             throw err;
@@ -16,30 +21,12 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
 
-    var URL = "http://www.cf2roues.fr";
-    //res.status(200).json(URL);
-
-    crawl.crawl(URL, function(err, urls) {
+    Url.postUrls(function (err, urls) {
         if (err) {
-            console.error("An error occured", err);
-            return;
+            throw err;
+        } else {
+            res.status(200).json(urls);
         }
-        console.log(JSON.stringify(urls));
-        //fs.appendFileSync('output.json', JSON.stringify(pages), function (err) {
-        //fs.appendFile('output.json', JSON.stringify(pages), function (err) {
-        /*fs.writeFile('output.json', JSON.stringify(pages), function (err) {
-            if (err) throw err;
-            console.log('Done !');
-        });*/
-
-        // res.status(200).json(urls);
-        Url.postUrls(function (err, urls) {
-            if (err) {
-                throw err;
-            } else {
-                res.json(urls);
-            }
-        });
     });
 });
 

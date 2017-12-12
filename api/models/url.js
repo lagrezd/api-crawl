@@ -1,19 +1,12 @@
 const mongoose = require('mongoose');
 
 // Crawl Schema
-const urlSchema = mongoose.Schema({
-    project_id: {
-      type: Number
-    },
-    address: {
-       type: String
-    },
-    status: {
-        type: Number
-    },
-    links: {
-        type: Number
-    },
+const urlSchema = new mongoose.Schema({
+    title: String,
+    project_id: Number,
+    address: String,
+    status: Number,
+    links: Array,
     created_date: {
         type: Date,
         created_date: Date.now
