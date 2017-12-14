@@ -15,6 +15,7 @@ $( document ).ready(function(){
                 inputData.urls.push(this.value);
             }
         })
+        //console.log(inputData);
 
         //send post request to server with urls in payload
         $.ajax({
@@ -27,11 +28,21 @@ $( document ).ready(function(){
                 console.log("Successfully retrieved  url data ", urlData);
 
                 for(var url in urlData) {
-                    for(var number in urlData[url]) {
+
+                    console.log(url);
+                    var phoneNumber = document.createElement("div");
+                    var i = Object.keys(urlData).indexOf(url) + 1;
+                    phoneNumber.innerText = url + " - " + i;
+                    $('#output-data').append(phoneNumber);
+                    /*for(var number in urlData[url]) {
+
+                        console.log(number);
+
                         var phoneNumber = document.createElement("div");
                         phoneNumber.innerText = number;
                         $('#output-data').append(phoneNumber);
-                    }
+                        //$('#output-data').append(phoneNumber);
+                    }*/
                 }
             },
 
